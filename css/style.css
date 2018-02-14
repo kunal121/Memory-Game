@@ -46,7 +46,6 @@ margin-top: 10%;
  -moz-backface-visibility: hidden;
  -o-backface-visibility: hidden;
  backface-visibility: hidden;
-
  position: absolute;
  top: 0;
  left: 0;
@@ -64,4 +63,8 @@ margin-top: 10%;
 	transform: rotateY(180deg);
 
 	background: url(http://davidwalsh.name/demo/dwflip.jpg) 0 0 no-repeat;
+}
+
+body{
+  background-color: red;
 }

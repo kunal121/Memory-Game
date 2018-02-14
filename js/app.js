@@ -22,9 +22,16 @@ let PlaceCards=()=>{
         deck_ref[0].appendChild(li_ref)
       }
 }
+
 let endGame=()=>{
     console.log("hello");
 }
+
+let change_stars=()=>{
+    star_ref[0].removeChild(star_ref[0].lastElementChild);
+
+}
+
 let match=(match1,match2)=>{
     if(match1==match2){
         open=[];
@@ -38,16 +45,32 @@ let match=(match1,match2)=>{
     }
     else{
         console.log("Match not possible");
+        open[0].classList.add("animated","shake");
+        open[1].classList.add("animated","shake");
         setTimeout(function(){
-        open[0].classList.remove("open");
-        open[0].classList.remove("show");
-        open[1].classList.remove("open");
-        open[1].classList.remove("show");
+          // open[1].classList.add("shake");
+        open[0].classList.remove("open","show");
+        open[1].classList.remove("open","show");
+        open[0].classList.remove("animated","shake");
+        open[1].classList.remove("animated","shake");
+        for(i of open){
+          i.style.pointerEvents="auto";
+        }
         open=[];
         count=0;
       },500)
       moves=moves+1;
       mov_ref[0].innerHTML=moves;
+
+      if(moves>15 && moves<=20 && flag1==0){
+        change_stars();
+        flag1=1;
+      }
+      else if(moves>20 && flag2==0){
+        change_stars();
+        flag2=1;
+      }
+
     }
 }
 
@@ -57,7 +80,8 @@ let card_class=(ref)=>{
   ref.classList.add("open");
   ref.classList.add("show");
   open.push(ref);
-  
+  ref.style.pointerEvents='none';
+
   count++;
     if(count==2){
       match1=open[0].firstChild.className;
@@ -96,7 +120,12 @@ let Start_Game=()=>{
 let count=0;
 let full=0;
 let moves=0;
+let flag1=0;
+let flag2=0;
+
 Start_Game();
+let time_ref=document.getElementsByClassName("timer");
+
 const mov_ref=document.getElementsByClassName('moves');
 const star_ref=document.getElementsByClassName('stars');
 
